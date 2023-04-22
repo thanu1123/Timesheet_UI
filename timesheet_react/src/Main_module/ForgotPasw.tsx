@@ -53,7 +53,7 @@ export function ForgotPassword() {
             },
           ]}
         >
-          <Input.Password prefix={<LockOutlined />} placeholder="Email" />
+          <Input.Password prefix={<LockOutlined />} placeholder="Password" />
         </Form.Item>
 
         <Form.Item>

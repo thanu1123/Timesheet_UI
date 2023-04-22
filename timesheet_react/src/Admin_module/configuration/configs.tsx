@@ -398,14 +398,6 @@ export function Config() {
         } else {
           clientTableData = r.data;
         }
-        // designationData = r.data.map((item: any) => {
-        //   return {
-        //     key: item.designation_Id,
-        //     name: item.designation,
-        //     isActive: item.is_Active,
-        //   };
-        // });
-        // setDesigData(desigData);
       })
       .catch((error: any) => {
         message.error(error.message);
@@ -722,7 +714,9 @@ export function Config() {
         style={{
           width: "100%",
           marginTop: 16,
-          background: "rgba(235, 235, 235,0.6)",
+          //background: "rgba(235, 235, 235,0.6)",
+          background:
+            "-webkit-linear-gradient(45deg,rgba(9, 0, 159, 0.2), rgba(0, 255, 149, 0.2) 55%)",
         }}
       >
         <Tabs

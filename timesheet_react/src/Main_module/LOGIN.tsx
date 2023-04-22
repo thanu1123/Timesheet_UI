@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const onFinish = (e: any) => {
+  const onFinish = (values: any) => {
     axios({
       method: "post",
       headers: {
@@ -33,15 +33,11 @@ const LoginPage: React.FC = () => {
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
       url: "/api/Login/Login",
-      data: e,
+      data: values,
     })
       .then((r: any) => {
-        localStorage.setItem("mailId", r.email);
         localStorage.setItem("token", r.data.token);
-        localStorage.setItem("Employee_Id", r.data.Employee_Id);
-        console.log(r.email);
-        console.log(r.data.role_Id);
-
+        localStorage.setItem("Employee_Id", r.data.employee_Id);
         if (r.data.role_Id === 1) {
           navigate("/admin");
         } else if (r.data.role_Id === 2) {
@@ -52,15 +48,29 @@ const LoginPage: React.FC = () => {
         }
         settoken(r.data.token);
         AddProjectForm.resetFields();
-      })
-      .catch((error) => {
-        const errorObject = {
-          type: "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-          title: "Not Found",
-          status: 404,
-          traceId: "00-378bef0533d024b409dacc03fad55261-6a2e6fbeb3f56d0f-00",
-        };
+        const employeeId = r.data.employee_Id;
 
+        axios({
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
+          url: `/api/Admin/GetByEmployeeId?id=${employeeId}`,
+        })
+          .then((response: any) => {
+            console.log(response.data[0].official_Email);
+            const employeeEmail = response.data[0].official_Email;
+            localStorage.setItem("mailId", employeeEmail);
+            console.log(employeeId);
+            console.log(employeeEmail);
+          })
+          .catch((error: any) => {
+            message.error(error.message);
+          });
+      })
+      .catch((error: any) => {
         setMessage(error.response.status, error.response.message);
         AddProjectForm.resetFields();
       });

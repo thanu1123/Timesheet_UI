@@ -307,103 +307,107 @@ export const Employee: React.FC = () => {
       >
         Employees
       </h1>
-      <AddEmployee />
-      <div
-        style={{
-          display: "flex",
-          float: "right",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          hidden={
-            selectedRows.filter((row: any) => row.is_Active == false).length ===
-            0
-          }
-        >
-          <Button
-            onClick={() => handleActivateDeactivate(true)}
-            type="primary"
-            style={{
-              width: 85,
-              background:
-                "-webkit-linear-gradient(45deg, darkgreen, lightgreen 105%)",
-              fontWeight: 500,
-              marginRight: 4,
-            }}
-          >
-            Activate
-          </Button>
-        </div>
-        <div
-          hidden={
-            selectedRows.filter((row: any) => row.is_Active == true).length ===
-            0
-          }
-        >
-          <Button
-            type="primary"
-            style={{
-              width: 100,
-              fontWeight: 500,
-              marginRight: 4,
-              background:
-                "-webkit-linear-gradient(45deg, #8B0000, #FFC0CB 105%)",
-            }}
-            onClick={() => handleActivateDeactivate(false)}
-          >
-            Deactivate
-          </Button>
-        </div>
-      </div>
-      <Input.Search
-        value={searchText}
-        onChange={(e: any) => setSearchText(e.target.value)}
-        placeholder="Search"
-        style={{
-          width: 100,
-          display: "flex",
-          float: "left",
-          textAlign: "center",
-          marginRight: 5,
-          borderRadius: 4,
-          padding: 3,
-          background:
-            "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.9), rgba(0, 255, 149, 0.5) 105%)",
-          color: "black",
-          fontWeight: "bold",
-        }}
-      />
-      <Select
-        value={selectedOption}
-        onChange={handleOptionChange}
-        style={{
-          width: 110,
-          borderRadius: 3,
-          padding: 3,
-          background:
-            "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.9), rgba(0, 255, 149, 0.5) 105%)",
-          color: "black",
-          fontWeight: "bold",
-        }}
-        dropdownStyle={{
-          background:
-            "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.3), rgba(0, 255, 149, 0.3) 95%)",
-          color: "black",
-          fontWeight: "bold",
-        }}
-      >
-        <Select.Option value={false}>Inactive</Select.Option>
-        <Select.Option value={true}>Active</Select.Option>
-      </Select>
       <Card
         style={{
           width: "100%",
           marginTop: 16,
-          background: "rgba(235, 235, 235,0.6)",
+          paddingTop: 35,
+          //background: "rgba(235, 235, 235,0.6)",
+          background:
+            "-webkit-linear-gradient(45deg,rgba(9, 0, 159, 0.2), rgba(0, 255, 149, 0.2) 55%)",
         }}
       >
+        <AddEmployee />
+        <div
+          style={{
+            display: "flex",
+            float: "right",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            hidden={
+              selectedRows.filter((row: any) => row.is_Active == false)
+                .length === 0
+            }
+          >
+            <Button
+              onClick={() => handleActivateDeactivate(true)}
+              type="primary"
+              style={{
+                width: 85,
+                background:
+                  "-webkit-linear-gradient(45deg, darkgreen, lightgreen 105%)",
+                fontWeight: 500,
+                marginRight: 4,
+              }}
+            >
+              Activate
+            </Button>
+          </div>
+          <div
+            hidden={
+              selectedRows.filter((row: any) => row.is_Active == true)
+                .length === 0
+            }
+          >
+            <Button
+              type="primary"
+              style={{
+                width: 100,
+                fontWeight: 500,
+                marginRight: 4,
+                background:
+                  "-webkit-linear-gradient(45deg, #8B0000, #FFC0CB 105%)",
+              }}
+              onClick={() => handleActivateDeactivate(false)}
+            >
+              Deactivate
+            </Button>
+          </div>
+        </div>
+        <Input.Search
+          value={searchText}
+          onChange={(e: any) => setSearchText(e.target.value)}
+          placeholder="Search"
+          style={{
+            width: 100,
+            display: "flex",
+            float: "left",
+            textAlign: "center",
+            marginRight: 5,
+            borderRadius: 4,
+            padding: 3,
+            background:
+              "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.9), rgba(0, 255, 149, 0.5) 105%)",
+            color: "black",
+            fontWeight: "bold",
+          }}
+        />
+        <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          style={{
+            width: 110,
+            borderRadius: 3,
+            padding: 3,
+            background:
+              "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.9), rgba(0, 255, 149, 0.5) 105%)",
+            color: "black",
+            fontWeight: "bold",
+          }}
+          dropdownStyle={{
+            background:
+              "-webkit-linear-gradient(45deg, rgba(9, 0, 159, 0.3), rgba(0, 255, 149, 0.3) 95%)",
+            color: "black",
+            fontWeight: "bold",
+          }}
+        >
+          <Select.Option value={false}>Inactive</Select.Option>
+          <Select.Option value={true}>Active</Select.Option>
+        </Select>
+
         <Table
           dataSource={filteredData}
           columns={columns}
