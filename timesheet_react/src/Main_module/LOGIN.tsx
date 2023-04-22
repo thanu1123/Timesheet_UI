@@ -1,10 +1,10 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Layout, message } from "antd";
+import { Button, Checkbox, Form, Input, Layout, Modal, message } from "antd";
 import { Content } from "antd/es/layout/layout";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//import "./login.css";
+import { ForgotPassword } from "./ForgotPasw";
 const LoginPage: React.FC = () => {
   const [AddProjectForm] = Form.useForm();
   const navigate = useNavigate();
@@ -66,52 +66,16 @@ const LoginPage: React.FC = () => {
       });
   };
 
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPasswordModal(true);
+  };
+
+  const handleCancel = () => {
+    setShowForgotPasswordModal(false);
+  };
   return (
-    // <div className="login-page-container">
-    //   <Form
-    //     name="normal_login"
-    //     className="login-form"
-    //     onFinish={onFinish}
-    //     form={AddProjectForm}
-    //   >
-    //     <h1>Login</h1>
-    //     <Form.Item
-    //       name="email"
-    //       rules={[{ required: true, message: "Please input your Email!" }]}
-    //     >
-    //       <Input
-    //         prefix={<UserOutlined className="site-form-item-icon" />}
-    //         placeholder="Enter Email"
-    //       />
-    //     </Form.Item>
-    //     <Form.Item
-    //       name="password"
-    //       rules={[{ required: true, message: "Please input your Password!" }]}
-    //     >
-    //       <Input.Password
-    //         prefix={<LockOutlined className="site-form-item-icon" />}
-    //         type="password"
-    //         placeholder="Password"
-    //       />
-    //     </Form.Item>
-    //     <Form.Item>
-    //       <b>
-    //         <Button type="link" className="login-form-forgot">
-    //           <Link to="/resetpassword"> Reset Password</Link>
-    //         </Button>
-    //       </b>
-    //     </Form.Item>
-    //     <Form.Item>
-    //       <Button
-    //         type="primary"
-    //         htmlType="submit"
-    //         className="login-form-button"
-    //       >
-    //         Log in
-    //       </Button>
-    //     </Form.Item>
-    //   </Form>
-    // </div>
     <div
       style={{
         margin: 0,
@@ -157,8 +121,21 @@ const LoginPage: React.FC = () => {
                 Login
               </label>
             </Form.Item>
-            <Form.Item name="email">
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
+                },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address!",
+                },
+              ]}
+              name="email"
+            >
               <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="Email"
                 style={{
                   height: 40,
@@ -169,11 +146,15 @@ const LoginPage: React.FC = () => {
               />
             </Form.Item>
 
-            <Form.Item name="password">
+            <Form.Item
+              name="password"
+              rules={[
+                { required: true, message: "Please input your Password!" },
+              ]}
+            >
               <Input.Password
-                name="pswd"
+                prefix={<LockOutlined />}
                 placeholder="Password"
-                required
                 style={{
                   justifyContent: "center",
                   display: "flex",
@@ -182,16 +163,39 @@ const LoginPage: React.FC = () => {
                 }}
               />
             </Form.Item>
+
             <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 style={{ marginLeft: "36%" }}
               >
-                Submit
+                Login
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="link"
+                style={{
+                  fontWeight: 700,
+                  textDecoration: "underline",
+                  display: "flex",
+                  marginLeft: 65,
+                }}
+                onClick={handleForgotPasswordClick}
+              >
+                Forgot Password
               </Button>
             </Form.Item>
           </Form>
+          <Modal
+            title="Forgot Password"
+            visible={showForgotPasswordModal}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            <ForgotPassword />
+          </Modal>
         </div>
       </div>
     </div>

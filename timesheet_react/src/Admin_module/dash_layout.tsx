@@ -8,7 +8,13 @@ import {
 } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIdCard, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
-import { BrowserRouter as Router, Route, Link, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import joy from "../Main_module/joy.png";
 const { Header, Content, Sider } = Layout;
 
@@ -23,11 +29,12 @@ export function AdminDashboard() {
     setSelectedKeys([e.key]);
   };
 
-
-   const navigate = useNavigate();
-   function handleLogout() {
+  const navigate = useNavigate();
+  function handleLogout() {
+    window.history.replaceState(null, "", "/");
     navigate("/", { replace: true });
-   }
+    localStorage.removeItem("token");
+  }
   function UserDetails() {
     const userMenu = (
       <Menu>

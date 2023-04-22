@@ -20,10 +20,12 @@ export function EmployeeA() {
   const onCollapse = (collapsed: any) => {
     setCollapsed(collapsed);
   };
-   const navigate = useNavigate();
-   function handleLogout() {
+  const navigate = useNavigate();
+  function handleLogout() {
+    window.history.replaceState(null, "", "/");
     navigate("/", { replace: true });
-   }
+    localStorage.removeItem("token");
+  }
   const handleMenuClick = (e: any) => {
     setSelectedKeys([e.key]);
   };

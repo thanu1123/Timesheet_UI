@@ -17,6 +17,7 @@ import { AdminDashboard } from "../Admin_module/dash_layout";
 import { Configuration } from "../Admin_module/Config_layout";
 import { EmployeeA } from "../Admin_module/Emp_layout";
 import LoginPage from "./LOGIN";
+import { ForgotPassword } from "./ForgotPasw";
 
 const { Header, Content, Sider } = Layout;
 
@@ -34,6 +35,7 @@ const Home = () => {
       }
     } else {
       navigate("/");
+      localStorage.removeItem("token");
     }
   }, [navigate]);
   useEffect(() => {
@@ -54,7 +56,8 @@ const Home = () => {
               )
             }
           />
-          {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+          <Route path="/forgotpassword" element={<ForgotPassword/> } />
+
           {/* <Route path="/employee" element={<Config />} /> */}
         </Routes>
 
@@ -80,17 +83,34 @@ const Home = () => {
               )
             }
           />
-          <Route path="/admin/timesheet_status" element={<h1>Status</h1>} />
+          <Route
+            path="/admin/timesheet_status"
+            element={
+              "isAuthenticated" ? <h1>Status</h1> : <Navigate to="/" replace />
+            }
+          />
           <Route
             path="/admin/employees"
             element={
               "isAuthenticated" ? <EmployeeA /> : <Navigate to="/" replace />
             }
           />
-          <Route path="/admin/user_profile" element={<h1>profile</h1>} />
+          <Route
+            path="/admin/user_profile"
+            element={
+              "isAuthenticated" ? (
+                <h1>USER PROFILE</h1>
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
         </Routes>
         {/*  employee routes   */}
-        <Routes></Routes>
+        <Routes>
+          <>
+          </>
+        </Routes>
       </Content>
     </Layout>
   );

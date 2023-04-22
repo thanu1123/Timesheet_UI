@@ -22,8 +22,9 @@ export function Configuration() {
   };
   const navigate = useNavigate();
   function handleLogout() {
-    //navigate("/");
+    window.history.replaceState(null, "", "/");
     navigate("/", { replace: true });
+    localStorage.removeItem("token");
   }
   const handleMenuClick = (e: any) => {
     setSelectedKeys([e.key]);
