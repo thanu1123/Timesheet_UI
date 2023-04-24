@@ -383,8 +383,8 @@ export function Config() {
       url: urlT,
     })
       .then((r: any) => {
+         message.success("Data fetched successfully");
         setTableData(r.data);
-        message.success("Data fetched successfully");
 
         if (selectedTab === "GetClientIsActive") {
           clientTableData = r.data.map((item: any) => {
