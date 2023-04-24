@@ -51,7 +51,7 @@ export function AddClient() {
         title="Fill in Details"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[]}
+        footer={null}
       >
         <Form
           labelCol={{ span: 8 }}
@@ -115,11 +115,7 @@ export function AddProject(props: any) {
         title="Fill in Details"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[
-          <Button key="cancel" onClick={handleCancel}>
-            Cancel
-          </Button>,
-        ]}
+        footer={null}
       >
         <Form
           labelCol={{ span: 8 }}
@@ -216,11 +212,7 @@ export function AddDesignation() {
         title="Fill in Details"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[
-          <Button key="cancel" onClick={handleCancel}>
-            Cancel
-          </Button>,
-        ]}
+        footer={null}
       >
         <Form
           labelCol={{ span: 8 }}
@@ -283,11 +275,7 @@ export function AddEmpType() {
         title="Fill in Details"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[
-          <Button key="cancel" onClick={handleCancel}>
-            Cancel
-          </Button>,
-        ]}
+        footer={null}
       >
         <Form
           labelCol={{ span: 8 }}
@@ -350,11 +338,7 @@ export function AddHrInfo() {
         title="Fill in Details"
         open={isModalOpen}
         onCancel={handleCancel}
-        footer={[
-          <Button key="cancel" onClick={handleCancel}>
-            Cancel
-          </Button>,
-        ]}
+        footer={null}
       >
         <Form
           labelCol={{ span: 8 }}

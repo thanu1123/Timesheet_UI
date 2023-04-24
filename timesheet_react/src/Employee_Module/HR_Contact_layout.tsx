@@ -5,6 +5,8 @@ import {
   SettingFilled,
   FieldTimeOutlined,
   UserOutlined,
+  ProfileOutlined,
+  PhoneOutlined,
 } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIdCard, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
@@ -16,11 +18,12 @@ import {
   useNavigate,
 } from "react-router-dom";
 import joy from "../Main_module/joy.png";
-import { Dashboards } from "./dashboard/dash";
+import EDashboard from "./Emp_Dashboard/EDashboard";
+import Hrinfo from "./Emp_HRContactInfo/EHrContactInfo";
 
 const { Header, Content, Sider } = Layout;
 
-export function AdminDashboard() {
+export function HRContactInfo() {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKeys, setSelectedKeys] = useState<Array<any>>([]);
   const onCollapse = (collapsed: any) => {
@@ -116,23 +119,20 @@ export function AdminDashboard() {
               style={{ marginTop: 5 }}
               selectedKeys={selectedKeys}
             >
-              <Menu.Item key="1" icon={<DesktopOutlined />}>
-                <Link to="/admin/dashboard">Dashboard</Link>
+              <Menu.Item key="" icon={<DesktopOutlined />}>
+                <Link to="/employee/dashboard">Dashboard</Link>
               </Menu.Item>
-              <Menu.Item key="2" icon={<SettingFilled />}>
-                <Link to="/admin/configuration">Configuration</Link>
+              <Menu.Item key="timesheetsummary" icon={<FieldTimeOutlined />}>
+                <Link to="/employee/timesheetsummary">Timesheet Summary</Link>
               </Menu.Item>
-              <Menu.Item key="3" icon={<FieldTimeOutlined />}>
-                <Link to="/admin/timesheet_status">Timesheet Status</Link>
+              <Menu.Item key="timesheet" icon={<ProfileOutlined />}>
+                <Link to="/employee/timesheet">Timesheet </Link>
               </Menu.Item>
-              <Menu.Item
-                key="4"
-                icon={<FontAwesomeIcon icon={faPeopleGroup} />}
-              >
-                <Link to="/admin/employees">Employees</Link>
+              <Menu.Item key="hrcontactinfo" icon={<PhoneOutlined />}>
+                <Link to="/employee/hrcontact">HR Contact</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<FontAwesomeIcon icon={faIdCard} />}>
-                <Link to="/admin/user_profile">User Profile</Link>
+              <Menu.Item key="userprofile" icon={<UserOutlined />}>
+                <Link to="/employee/userprofile">User Profile</Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -147,8 +147,7 @@ export function AdminDashboard() {
                 "-webkit-linear-gradient(45deg,rgba(255, 192, 203, 0.7), rgba(135, 206, 235, 0.4) 100%)",
             }}
           >
-            <h1 style={{fontSize:30}}>Hello Admin 😊</h1>
-            <Dashboards />
+            <Hrinfo />
           </Content>
         </Layout>
       </Layout>

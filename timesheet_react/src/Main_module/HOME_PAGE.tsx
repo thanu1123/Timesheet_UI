@@ -19,6 +19,12 @@ import { EmployeeA } from "../Admin_module/Emp_layout";
 import LoginPage from "./LOGIN";
 import { ForgotPassword } from "./ForgotPasw";
 import { UserProfile } from "../Admin_module/User_prof_layout";
+import { TimesheetStatus } from "../Admin_module/TS_stats_Layout";
+import { EmpDashboard } from "../Employee_Module/EmpDash_layout";
+import { EmpTimesheet } from "../Employee_Module/Timesheet_layout";
+import { TimeSheetSummary } from "../Employee_Module/TimesheetSummary_Layout";
+import { HRContactInfo } from "../Employee_Module/HR_Contact_layout";
+import { EUserProfile } from "../Employee_Module/EUser_prof_layout";
 
 const { Header, Content, Sider } = Layout;
 
@@ -59,7 +65,12 @@ const Home = () => {
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
 
-          {/* <Route path="/employee" element={<Config />} /> */}
+          <Route
+            path="/employee"
+            element={
+              "isAuthenticated" ? <EmpDashboard /> : <Navigate to="/" replace />
+            }
+          />
         </Routes>
 
         {/*  admin routes   */}
@@ -87,7 +98,11 @@ const Home = () => {
           <Route
             path="/admin/timesheet_status"
             element={
-              "isAuthenticated" ? <h1>Status</h1> : <Navigate to="/" replace />
+              "isAuthenticated" ? (
+                <TimesheetStatus />
+              ) : (
+                <Navigate to="/" replace />
+              )
             }
           />
           <Route
@@ -103,9 +118,47 @@ const Home = () => {
             }
           />
         </Routes>
+
         {/*  employee routes   */}
         <Routes>
-          <></>
+          <Route
+            path="/employee/dashboard"
+            element={
+              "isAuthenticated" ? <EmpDashboard /> : <Navigate to="/" replace />
+            }
+          />
+          <Route
+            path="/employee/timesheet"
+            element={
+              "isAuthenticated" ? <EmpTimesheet /> : <Navigate to="/" replace />
+            }
+          />
+          <Route
+            path="/employee/timesheetsummary"
+            element={
+              "isAuthenticated" ? (
+                <TimeSheetSummary />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+          <Route
+            path="/employee/hrcontact"
+            element={
+              "isAuthenticated" ? (
+                <HRContactInfo />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+          <Route
+            path="/employee/userprofile"
+            element={
+              "isAuthenticated" ? <EUserProfile /> : <Navigate to="/" replace />
+            }
+          />
         </Routes>
       </Content>
     </Layout>

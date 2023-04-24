@@ -596,11 +596,7 @@ export function Config() {
           title="Edit Details"
           open={isModalOpen}
           onCancel={handleCancel}
-          footer={[
-            <Button key="cancel" onClick={handleCancel}>
-              Cancel
-            </Button>,
-          ]}
+          footer={null}
         >
           {selectedTab === "GetClientIsActive" ? (
             <EditClient rowData={rowData} />

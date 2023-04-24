@@ -17,10 +17,11 @@ import {
 } from "react-router-dom";
 import joy from "../Main_module/joy.png";
 import { Dashboards } from "./dashboard/dash";
+import { TS_Status } from "./Timesheet_status/TS_Status";
 
 const { Header, Content, Sider } = Layout;
 
-export function AdminDashboard() {
+export function TimesheetStatus() {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKeys, setSelectedKeys] = useState<Array<any>>([]);
   const onCollapse = (collapsed: any) => {
@@ -147,8 +148,7 @@ export function AdminDashboard() {
                 "-webkit-linear-gradient(45deg,rgba(255, 192, 203, 0.7), rgba(135, 206, 235, 0.4) 100%)",
             }}
           >
-            <h1 style={{fontSize:30}}>Hello Admin 😊</h1>
-            <Dashboards />
+            <TS_Status />
           </Content>
         </Layout>
       </Layout>
